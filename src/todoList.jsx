@@ -12,6 +12,45 @@ class TodoList extends Component {
     this.handleBtnClick = this.handleBtnClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
   }
+  
+  componentWillMount() {
+    console.log('componentWillMount')
+  }
+  
+  render() { 
+    console.log('render');
+    return ( 
+      <Fragment>
+        <div>
+          <label htmlFor="insertArea">输入内容</label>
+          { /**表单受控组件input写法**/ }
+          <input id="insertArea"
+            value={this.state.inputValue}
+            onChange={this.handleInputChange}
+            //ref={(input)=>{this.input=input}}
+          />
+          <button onClick={this.handleBtnClick}>提交</button>
+        </div>
+        <ul>
+          {this.getTodoItem()}
+        </ul>
+      </Fragment>
+    );
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  //组件被更新之前,他会自动被执行
+  // shouldComponentUpdate() {
+  //   console.log('shouldComponentUpdate');
+  //   return true;
+  // }
+
+  // componentWillUpdate() {
+  //   console.log('componentWillUpdate')
+  // }
   handleInputChange(e) {
     const value = e.target.value;
     this.setState(()=>({
@@ -71,25 +110,6 @@ class TodoList extends Component {
         )
       })                    
     )
-  }
-
-  render() { 
-    return ( 
-      <Fragment>
-        <div>
-          <label htmlFor="insertArea">输入内容</label>
-          { /**表单受控组件input写法**/ }
-          <input id="insertArea"
-            value={this.state.inputValue}
-            onChange={this.handleInputChange}
-          />
-          <button onClick={this.handleBtnClick}>提交</button>
-        </div>
-        <ul>
-          {this.getTodoItem()}
-        </ul>
-      </Fragment>
-    );
   }
 }
  
