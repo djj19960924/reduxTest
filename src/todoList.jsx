@@ -37,6 +37,29 @@ class TodoList extends Component {
       </Fragment>
     );
   }
+  getTodoItem() {
+    return(
+      this.state.list.map((item,index)=>{
+        return (
+          <div key={index}>
+            <TodoItem 
+              content={item} 
+              index={index}
+              deleteItem={this.handleItemDelete}
+            />
+            {
+              // <li key={index}
+              //   //onClic={this.handleItemDelete.bind(this,index)}
+              //   //onClick={()=>this.handleItemDelete(index)}
+              //   onClick={this.handleItemDelete(index)}
+              //   dangerouslySetInnerHTML={{__html:item}}
+              // />
+            }
+          </div>                                  
+        )
+      })                    
+    )
+  }
 
   componentDidMount() {
     console.log('componentDidMount');
@@ -52,6 +75,7 @@ class TodoList extends Component {
   //   console.log('componentWillUpdate')
   // }
   handleInputChange(e) {
+    console.log(e)
     const value = e.target.value;
     this.setState(()=>({
       inputValue:value
@@ -88,29 +112,7 @@ class TodoList extends Component {
     })
   }
   
-  getTodoItem() {
-    return(
-      this.state.list.map((item,index)=>{
-        return (
-          <div key={index}>
-            <TodoItem 
-              content={item} 
-              index={index}
-              deleteItem={this.handleItemDelete}
-            />
-            {
-              // <li key={index}
-              //   //onClic={this.handleItemDelete.bind(this,index)}
-              //   //onClick={()=>this.handleItemDelete(index)}
-              //   onClick={this.handleItemDelete(index)}
-              //   dangerouslySetInnerHTML={{__html:item}}
-              // />
-            }
-          </div>                                  
-        )
-      })                    
-    )
-  }
+  
 }
  
 export default TodoList;
